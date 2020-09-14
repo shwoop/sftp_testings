@@ -15,10 +15,10 @@ def main():
     for item in sftp.listdir(loc):
         items_1.append(item)
     for item in sftp.listdir_iter(loc):
-        items_2.append(item)
+        items_2.append(item.filename)
         if stat.S_IFMT(item.st_mode) != stat.S_IFDIR:
             files.append(item)
-    assert len(items_1) == len(items_2)
+    assert items_1 == items_2
     print(f'{len(items_2)} items listed but only {len(files)} files')
 
 
